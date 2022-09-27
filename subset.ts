@@ -1,4 +1,4 @@
-let S: Set<number> = new Set<number>([1, 2, 3, 4]);
+let S: Set<number> = new Set<number>([1, 2, 3]);
 
 function getSetOfSubsets(S: Set<number>): Set<Set<number>> {
     let setOfSubsets: Set<Set<number>> = new Set<Set<number>>();
@@ -16,3 +16,20 @@ function getSetOfSubsets(S: Set<number>): Set<Set<number>> {
     return setOfSubsets;
 }
 
+function getTupleSubsets(S: Set<number>): Set<Set<number>> {
+    let tupleSet: Set<Set<number>> = new Set<Set<number>>();
+    if (S.size <= 1) return tupleSet;
+    for (let i: number = 0; i < S.size; i++) {
+        for (let j: number = i; j < S.size; j++) {
+            let subset: Set<number> = new Set<number>();
+            if (i != j) {
+                subset.add(i+1);
+                subset.add(j+1);
+                tupleSet.add(subset);
+            }
+        }
+    }
+    return tupleSet;
+}
+
+console.log(getTupleSubsets(S));
